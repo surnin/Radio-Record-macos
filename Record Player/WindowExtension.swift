@@ -1,5 +1,5 @@
 //
-//  Dimensions.swift
+//  WindowExtension.swift
 //  Record Player
 //
 //  Created by Евгений K on 22.04.2024.
