@@ -5,4 +5,17 @@
 //  Created by Евгений K on 22.04.2024.
 //
 
-import Foundation
+struct NowModel: Codable {
+    let result: [TrackWrapperModel]
+}
+
+struct TrackWrapperModel: Codable {
+    let id: Int
+    let track: TrackModel
+}
+
+struct TrackModel: Codable {
+    let id: Int
+    let artist: String
+    let song: String
+}

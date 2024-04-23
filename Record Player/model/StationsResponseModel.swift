@@ -9,6 +9,8 @@ struct StationModel: Codable {
     let id: Int
     let title: String
     let prefix: String
+    var artist: String?
+    var song: String?
 }
 
 struct StationTagsModel: Codable {

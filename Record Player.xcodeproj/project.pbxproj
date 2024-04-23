@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4407FDDF2BD6C76F004D477C /* NowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4407FDDE2BD6C76F004D477C /* NowResponseModel.swift */; };
 		44397A2E2BD6734B0056BE98 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397A2D2BD6734B0056BE98 /* Dimensions.swift */; };
+		443A9A3A2BD78BF800E4C479 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A9A392BD78BF800E4C479 /* Repository.swift */; };
+		443A9A3E2BD7904500E4C479 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A9A3D2BD7904500E4C479 /* MainPresenter.swift */; };
 		445444C62BD661EC00E7EA48 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 445444C52BD661EC00E7EA48 /* README.MD */; };
 		449A61D82BD59F1600EFC421 /* Record_PlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D72BD59F1600EFC421 /* Record_PlayerApp.swift */; };
 		449A61DA2BD59F1600EFC421 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D92BD59F1600EFC421 /* ContentView.swift */; };
@@ -19,7 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4407FDDE2BD6C76F004D477C /* NowResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowResponseModel.swift; sourceTree = "<group>"; };
+		44381A3E2BD6F9A1003E0088 /* Record-Player-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Record-Player-Info.plist"; sourceTree = SOURCE_ROOT; };
 		44397A2D2BD6734B0056BE98 /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
+		443A9A392BD78BF800E4C479 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		443A9A3D2BD7904500E4C479 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		445444C52BD661EC00E7EA48 /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		449A61D42BD59F1600EFC421 /* Record Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Record Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		449A61D72BD59F1600EFC421 /* Record_PlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record_PlayerApp.swift; sourceTree = "<group>"; };
@@ -51,6 +58,22 @@
 			path = helper;
 			sourceTree = "<group>";
 		};
+		443A9A3B2BD78C0000E4C479 /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				443A9A392BD78BF800E4C479 /* Repository.swift */,
+			);
+			path = repository;
+			sourceTree = "<group>";
+		};
+		443A9A3C2BD7903700E4C479 /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				443A9A3D2BD7904500E4C479 /* MainPresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
 		449A61CB2BD59F1600EFC421 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +95,9 @@
 		449A61D62BD59F1600EFC421 /* Record Player */ = {
 			isa = PBXGroup;
 			children = (
+				443A9A3C2BD7903700E4C479 /* presenter */,
+				443A9A3B2BD78C0000E4C479 /* repository */,
+				44381A3E2BD6F9A1003E0088 /* Record-Player-Info.plist */,
 				44397A2C2BD6732E0056BE98 /* helper */,
 				44F62D032BD66E0300651C8D /* view */,
 				44F62D002BD66D5300651C8D /* model */,
@@ -96,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				44F62D012BD66DDE00651C8D /* StationsResponseModel.swift */,
+				4407FDDE2BD6C76F004D477C /* NowResponseModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -180,11 +207,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443A9A3A2BD78BF800E4C479 /* Repository.swift in Sources */,
 				44F62D022BD66DDE00651C8D /* StationsResponseModel.swift in Sources */,
 				44397A2E2BD6734B0056BE98 /* Dimensions.swift in Sources */,
+				443A9A3E2BD7904500E4C479 /* MainPresenter.swift in Sources */,
 				44F62D052BD66E1100651C8D /* StationItem.swift in Sources */,
 				449A61DA2BD59F1600EFC421 /* ContentView.swift in Sources */,
 				449A61D82BD59F1600EFC421 /* Record_PlayerApp.swift in Sources */,
+				4407FDDF2BD6C76F004D477C /* NowResponseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +354,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Record-Player-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -353,6 +384,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Record-Player-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

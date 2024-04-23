@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StationItem: View {
     var title: String
+    var artist: String
+    var song: String
     
     var body: some View {
         HStack {
