@@ -6,8 +6,6 @@ name: Swift
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -15,9 +13,16 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: sersoft-gmbh/xcodebuild-action@v3.2.0
-      with:
-        project: Record\ Player.xcodeproj
-        scheme: Record\ Player
-        destination: platform=macOS
-        action: build
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        set -o pipefail
+        xcodebuild build \
+          -workspace "$PROJECT" \
+          -scheme "$SCHEME" \
+          -sdk "$SDK" \
+          -configuration Debug;
+      env:
+        PROJECT: Record\ Player.xcworkspace
+        SCHEME: Record\ Player
+        SDK: macosx
