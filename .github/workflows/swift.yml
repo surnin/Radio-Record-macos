@@ -40,5 +40,5 @@ jobs:
           ls && \
           create-dmg \
           build/Radio\ Record.dmg \ 
-          $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
+          $(pwd)/build/Release/Record\ Player.app;
         
