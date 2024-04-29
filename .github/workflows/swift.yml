@@ -28,7 +28,6 @@ jobs:
         run: |
           brew install create-dmg
           
-      - uses: actions/checkout@v4
       - name: Build Unsigned Release
         run: |
           xcodebuild build \
@@ -41,12 +40,11 @@ jobs:
           PROJECT: Record Player.xcodeproj
           SCHEME: Record Player
 
-      - uses: actions/checkout@v4
       - name: Build DMG
         run: | 
           pwd && \
           ls && \
           create-dmg \
           build/Radio\ Record.dmg \ 
-          $(pwd)/DerivedData/build/Release/Record\ Player.app;
+          $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
         
