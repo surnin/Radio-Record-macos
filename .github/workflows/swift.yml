@@ -18,6 +18,8 @@ jobs:
       run: |
         set -o pipefail
         xcodebuild build \
+          -CODE_SIGN_IDENTITY="" 
+          -CODE_SIGNING_REQUIRED=NO
           -project "$PROJECT" \
           -scheme "$SCHEME" \
           -sdk "$SDK" \
