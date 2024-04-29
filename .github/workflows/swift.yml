@@ -37,7 +37,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build DMG
         run: | 
+          ls && \
           create-dmg \
           build/Radio\ Record.dmg \ 
-          build/Release/Record\ Player.app;
+          $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
         
