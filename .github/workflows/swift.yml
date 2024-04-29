@@ -52,9 +52,9 @@ jobs:
           Radio\ Record.dmg $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
-        	with:
-            name: "Radio Record"
-            path: Radio Record.dmg
+        with:
+          name: "Radio Record"
+          path: Radio Record.dmg
          
   release:
     needs: build
