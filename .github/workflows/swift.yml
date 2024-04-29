@@ -23,6 +23,6 @@ jobs:
           -sdk "$SDK" \
           -configuration Debug;
       env:
-        PROJECT: Record\ Player.xcworkspace
-        SCHEME: Record\ Player
+        PROJECT: Record Player.xcworkspace
+        SCHEME: Record Player
         SDK: macosx
