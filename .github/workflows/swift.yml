@@ -17,6 +17,7 @@ jobs:
     - name: Run Tests
       run: |
         xcodebuild build-for-testing \
+          -scheme "$SCHEME" \
           -CODE_SIGNING_ALLOWED=NO;
       env:
         PROJECT: Record Player.xcodeproj
