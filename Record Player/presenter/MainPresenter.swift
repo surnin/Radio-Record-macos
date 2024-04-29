@@ -8,19 +8,29 @@
 import Foundation
 
 public class MainPresenter: ObservableObject {
+    private let favouritesKey = "favourites"
     private static let baseUrl = "https://www.radiorecord.ru/api/"
     private let stationsUrl = "\(baseUrl)stations/"
     private let currentUrl = "\(baseUrl)stations/now/"
     
-    @Published var data: [StationModel] = []
+    @Published var data: [StationData] = []
     @Published var searchText: String = ""
     
-    var filteredStations: [StationModel] {
-           guard !searchText.isEmpty else { return data }
-           return data.filter { station in
-               station.title.lowercased().contains(searchText.lowercased())
-           }
-       }
+    var favouritesSet: Set<Int> {
+        get {
+            return UserDefaults.standard.object(forKey: favouritesKey) as? Set<Int> ?? Set<Int>()
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: favouritesKey)
+        }
+    }
+    
+    var filteredStations: [StationData] {
+        guard !searchText.isEmpty else { return data }
+        return data.filter { station in
+            station.title.lowercased().contains(searchText.lowercased())
+        }
+    }
     
     func onAppear() {
         guard let url = URL(string: stationsUrl) else { return }
@@ -30,7 +40,7 @@ public class MainPresenter: ObservableObject {
             do {
                 let posts = try JSONDecoder().decode(StationResultModel.self, from: data)
                 DispatchQueue.main.async {
-                    self.data = posts.result.stations
+                    self.data = posts.result.stations.map { $0.map() }
                 }
             } catch {
                 print(error.localizedDescription)
@@ -38,7 +48,7 @@ public class MainPresenter: ObservableObject {
         }.resume()
     }
     
-    func onStationClick(station: StationModel) -> String {
+    func onStationClick(station: StationData) -> String {
         let prefix = if (station.prefix == "record") {
             "record"
         } else {
@@ -61,12 +71,15 @@ public class MainPresenter: ObservableObject {
                     self.data = self.data.map { item in
                         let newItem = now.first(where: { $0.id == item.id})
                         
-                        return StationModel(
+                        return StationData(
                             id: item.id,
                             title: item.title,
                             prefix: item.prefix,
-                            artist: newItem?.track.artist,
-                            song:newItem?.track.song
+                            tooltip: item.tooltip,
+                            svg: item.svg,
+                            artist: newItem?.track.artist ?? String(),
+                            song: newItem?.track.song ?? String(),
+                            isFav: false
                         )
                     }
                 }
@@ -74,5 +87,9 @@ public class MainPresenter: ObservableObject {
                 print(error.localizedDescription)
             }
         }.resume()
+    }
+    
+    func onSetFav(to id: Int) {
+        print(id)
     }
 }

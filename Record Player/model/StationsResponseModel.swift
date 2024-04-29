@@ -9,8 +9,8 @@ struct StationModel: Codable {
     let id: Int
     let title: String
     let prefix: String
-    var artist: String?
-    var song: String?
+    let tooltip: String
+    let svg_outline: String
 }
 
 struct StationTagsModel: Codable {
@@ -19,4 +19,18 @@ struct StationTagsModel: Codable {
 
 struct StationResultModel: Codable {
     let result: StationTagsModel
+}
+
+extension StationModel {
+    func map() -> StationData {
+        return StationData(id: id,
+                           title: self.title,
+                           prefix: self.prefix,
+                           tooltip: self.tooltip,
+                           svg: self.svg_outline,
+                           artist: String(),
+                           song: String(),
+                           isFav: false
+        )
+    }
 }
