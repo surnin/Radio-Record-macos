@@ -13,9 +13,6 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Clean build
-        run: | 
-          [[ -d build ]] && rm -r build;
       - name: Run Tests
         run: |
           xcodebuild build-for-testing \
