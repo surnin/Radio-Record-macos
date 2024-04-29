@@ -50,6 +50,5 @@ jobs:
           --window-size 800 400 \
           --icon-size 100 \
           --app-drop-link 600 185 \
-          "Radio Record.dmg" \ 
-          "$APP_PATH";
+          Radio\ Record.dmg $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
         
