@@ -44,7 +44,6 @@ jobs:
         run: | 
           export APP_PATH="$(pwd)/DerivedData/Build/Products/Release/Record Player.app"
           create-dmg \
-          --no-internet-enable \
           --filesystem APFS \
           --window-pos 200 120 \
           --window-size 800 400 \
