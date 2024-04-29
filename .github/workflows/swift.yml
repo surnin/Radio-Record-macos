@@ -17,9 +17,7 @@ jobs:
     - name: Build
       run: |
         xcodebuild build \
-          -CODE_SIGNING_ALLOWED=NO
-          -sdk "$SDK" \
-          -configuration Release;
+          -CODE_SIGNING_ALLOWED=NO;
       env:
         PROJECT: Record Player.xcodeproj
         SCHEME: Record Player
