@@ -42,9 +42,14 @@ jobs:
 
       - name: Build DMG
         run: | 
-          pwd && \
-          ls && \
+          export APP_PATH="$(pwd)/DerivedData/Build/Products/Release/Record Player.app"
           create-dmg \
-          build/Radio\ Record.dmg \ 
-          $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
+          --window-pos 200 120 \
+          --window-size 800 400 \
+          --icon-size 100 \
+          --icon "Radio Record.app" 200 190 \
+          --hide-extension "Radio Record.app" \
+          --app-drop-link 600 185 \
+          Radio\ Record.dmg \ 
+          "$APP_PATH";
         
