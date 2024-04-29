@@ -37,6 +37,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build DMG
         run: | 
+          pwd \
           ls && \
           create-dmg \
           build/Radio\ Record.dmg \ 
