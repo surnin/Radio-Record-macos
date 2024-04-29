@@ -18,11 +18,11 @@ jobs:
       run: |
         set -o pipefail
         xcodebuild build \
-          -workspace "$PROJECT" \
+          -project "$PROJECT" \
           -scheme "$SCHEME" \
           -sdk "$SDK" \
           -configuration Debug;
       env:
-        PROJECT: Record Player.xcworkspace
+        PROJECT: Record Player.xcodeproj
         SCHEME: Record Player
         SDK: macosx
