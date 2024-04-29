@@ -13,22 +13,35 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Run Tests
-      run: |
-        xcodebuild build-for-testing \
-          -scheme "$SCHEME" \
-          -CODE_SIGNING_ALLOWED=NO;
-      env:
-        PROJECT: Record Player.xcodeproj
-        SCHEME: Record Player
-        SDK: macosx
-    - uses: actions/checkout@v4
-    - name: Build Unsigned Release
-      run: |
-        xcodebuild build \
-          -CODE_SIGNING_ALLOWED=NO;
-      env:
-        PROJECT: Record Player.xcodeproj
-        SCHEME: Record Player
-        SDK: macosx
+      - name: Clean build
+        run: | 
+          rm -r build;
+      - name: Run Tests
+        run: |
+          xcodebuild build-for-testing \
+            -scheme "$SCHEME" \
+            -CODE_SIGNING_ALLOWED=NO;
+        env:
+          PROJECT: Record Player.xcodeproj
+          SCHEME: Record Player
+          SDK: macosx
+      - name: Build Unsigned Release
+        run: |
+          xcodebuild build \
+            -CODE_SIGNING_ALLOWED=NO;
+        env:
+          PROJECT: Record Player.xcodeproj
+          SCHEME: Record Player
+          SDK: macosx
+      - name: Build DMG
+        run: | 
+          create-dmg \
+          --window-pos 200 120 \
+          --window-size 800 400 \
+          --icon-size 100 \
+          --icon "Radio Record.app" 200 190 \
+          --hide-extension "Radio Record.app" \
+          --app-drop-link 600 185 \
+          build/Radio\ Record.dmg \ 
+          build/Release/Record\ Player.app;
+        
