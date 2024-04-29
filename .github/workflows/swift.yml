@@ -50,4 +50,18 @@ jobs:
           --icon-size 100 \
           --app-drop-link 600 185 \
           Radio\ Record.dmg $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
+  release:
+    needs: build
+    runs-on: macOS-latest
+    
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: Radio Record
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: Radio Record.dmg
         
