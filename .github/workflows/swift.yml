@@ -16,7 +16,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: |
-        set -o pipefail
         xcodebuild build \
           -CODE_SIGNING_ALLOWED=NO
           -project "$PROJECT" \
