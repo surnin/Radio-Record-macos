@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Clean build
         run: | 
-          rm -r build;
+          [[ -d build ]] && rm -r build;
       - name: Run Tests
         run: |
           xcodebuild build-for-testing \
