@@ -42,7 +42,6 @@ jobs:
 
       - name: Build DMG
         run: | 
-          cat /Users/runner/work/_temp/54ede35c-8139-4d40-957a-4fee82b8f704.sh
           export APP_PATH="$(pwd)/DerivedData/Build/Products/Release/Record Player.app"
           create-dmg \
           --no-internet-enable \
