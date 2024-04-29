@@ -15,7 +15,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
     - uses: sersoft-gmbh/xcodebuild-action@v3.2.0
-    - name: Xcodebuild Action
-      run: xcodebuild
+      with:
+        project: Record Player.xcodeproj
+        scheme: Record Player
+        destination: platform=macOS
+        action: test
