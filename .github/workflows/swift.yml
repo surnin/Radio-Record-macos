@@ -13,6 +13,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - uses: actions/checkout@v4
       - name: Run Tests
         run: |
           xcodebuild build-for-testing \
@@ -22,10 +23,12 @@ jobs:
         env:
           PROJECT: Record Player.xcodeproj
           SCHEME: Record Player
+      - uses: actions/checkout@v4
       - name: Build Unsigned Release
         run: |
           xcodebuild build \
             -CODE_SIGNING_ALLOWED=NO;
+      - uses: actions/checkout@v4
       - name: Build DMG
         run: | 
           create-dmg \
