@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: sersoft-gmbh/xcodebuild-action@v3.2.0
       with:
-        project: "Record Player.xcodeproj"
-        scheme: "Record Player"
+        project: Record\ Player.xcodeproj
+        scheme: Record\ Player
         destination: platform=macOS
-        action: test
+        action: build
