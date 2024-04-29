@@ -42,7 +42,7 @@ jobs:
 
       - name: Build DMG
         run: | 
-          export APP_PATH="$(pwd)/DerivedData/Build/Products/Release/Record Player.app"
+          export APP_PATH="$(pwd)/DerivedData/Build/Products/Release/Record Player.app/"
           create-dmg \
           --window-pos 200 120 \
           --window-size 800 400 \
