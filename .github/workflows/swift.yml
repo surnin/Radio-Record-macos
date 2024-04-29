@@ -21,7 +21,7 @@ jobs:
           -project "$PROJECT" \
           -scheme "$SCHEME" \
           -sdk "$SDK" \
-          -configuration Debug;
+          -configuration Release;
       env:
         PROJECT: Record Player.xcodeproj
         SCHEME: Record Player
