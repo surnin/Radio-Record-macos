@@ -50,6 +50,12 @@ jobs:
           --icon-size 100 \
           --app-drop-link 600 185 \
           Radio\ Record.dmg $(pwd)/DerivedData/Build/Products/Release/Record\ Player.app;
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        	with:
+            name: "Radio Record"
+            path: Radio Record.dmg
+         
   release:
     needs: build
     runs-on: macOS-latest
