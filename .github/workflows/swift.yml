@@ -23,11 +23,17 @@ jobs:
         env:
           PROJECT: Record Player.xcodeproj
           SCHEME: Record Player
+          
       - uses: actions/checkout@v4
       - name: Build Unsigned Release
         run: |
           xcodebuild build \
             -CODE_SIGNING_ALLOWED=NO;
+
+      - name: Install Dependencies
+        run: |
+          brew install create-dmg
+        
       - uses: actions/checkout@v4
       - name: Build DMG
         run: | 
