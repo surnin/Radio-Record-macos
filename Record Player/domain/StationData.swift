@@ -9,9 +9,10 @@ struct StationData {
     let id: Int
     let title: String
     let prefix: String
-    let tooltip: String
     let svg: String
     let artist: String
     let song: String
     var isFav: Bool
+    let image: String
+    let shareUrl: String
 }

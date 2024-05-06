@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public class MainPresenter: ObservableObject {
     private let favouritesKey = "favourites"
@@ -15,6 +16,8 @@ public class MainPresenter: ObservableObject {
     
     @Published var data: [StationData] = []
     @Published var searchText: String = ""
+    @Published var stationState: StationData? = nil
+    @Published var shortcutState: Shortcuts = .none
     
     var favouritesSet: Set<Int> {
         get {
@@ -40,6 +43,7 @@ public class MainPresenter: ObservableObject {
             do {
                 let posts = try JSONDecoder().decode(StationResultModel.self, from: data)
                 DispatchQueue.main.async {
+                    print(posts.result.stations[0].svg_outline)
                     self.data = posts.result.stations.map { $0.map() }
                 }
             } catch {
@@ -49,11 +53,13 @@ public class MainPresenter: ObservableObject {
     }
     
     func onStationClick(station: StationData) -> String {
+        stationState = station
         let prefix = if (station.prefix == "record") {
             "record"
         } else {
-            "record-\(station.prefix)"
+            "record-\(station.prefix.replacingOccurrences(of: "-", with: ""))"
         }
+        print(prefix)
         return "https://hls-01-radiorecord.hostingradio.ru/\(prefix)/playlist.m3u8"
     }
     
@@ -69,17 +75,18 @@ public class MainPresenter: ObservableObject {
                     let now = posts.result
                     
                     self.data = self.data.map { item in
-                        let newItem = now.first(where: { $0.id == item.id})
+                        let newItem = now.first(where: { $0.id == item.id})?.track
                         
                         return StationData(
                             id: item.id,
                             title: item.title,
                             prefix: item.prefix,
-                            tooltip: item.tooltip,
                             svg: item.svg,
-                            artist: newItem?.track.artist ?? String(),
-                            song: newItem?.track.song ?? String(),
-                            isFav: false
+                            artist: newItem?.artist ?? String(),
+                            song: newItem?.song ?? String(),
+                            isFav: false,
+                            image: newItem?.image600 ?? String(),
+                            shareUrl: newItem?.shareUrl ?? String()
                         )
                     }
                 }

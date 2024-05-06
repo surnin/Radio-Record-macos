@@ -9,7 +9,6 @@ struct StationModel: Codable {
     let id: Int
     let title: String
     let prefix: String
-    let tooltip: String
     let svg_outline: String
 }
 
@@ -26,11 +25,12 @@ extension StationModel {
         return StationData(id: id,
                            title: self.title,
                            prefix: self.prefix,
-                           tooltip: self.tooltip,
                            svg: self.svg_outline,
                            artist: String(),
                            song: String(),
-                           isFav: false
+                           isFav: false,
+                           image: String(),
+                           shareUrl: String()
         )
     }
 }

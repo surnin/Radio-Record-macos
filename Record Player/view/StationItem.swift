@@ -20,6 +20,8 @@ struct StationItem: View {
     
     var body: some View {
         HStack {
+            /*SVGWebView(svg: svg)
+                .frame(width: 40, height: 40)*/
             Text(title)
             Image(systemName: starState.rawValue)
                 .onTapGesture {
