@@ -11,7 +11,7 @@ import AVKit
 
 struct ContentView: View {
     
-    @ObservedObject var presenter: MainPresenter
+    @ObservedObject var presenter = MainPresenter()
     
     @State private var windowTitleState: String = "Record"
     @State private var isPlaying: Bool = false
@@ -25,6 +25,7 @@ struct ContentView: View {
     init(presenter: MainPresenter) {
         self.presenter = presenter
         player = AVPlayer(playerItem: nil)
+        player.volume = 1
     }
     
     var body: some View {
@@ -61,7 +62,7 @@ struct ContentView: View {
                         imageUrlState = station.image
                         windowTitleState = "Record - \(station.title)"
                         stop()
-                        playerPlay(station: presenter.onStationClick(station: station))
+                        play(station: station)
                     }
             }
             .onAppear {
@@ -121,10 +122,10 @@ struct ContentView: View {
             print()
             break
         case .up:
-            setPlayerVolume(to: volumeState + 0.1)
+            volumeState += 0.1
             break
         case .down:
-            setPlayerVolume(to: volumeState - 0.1)
+            volumeState -= 0.1
             break
         case .none:
             print()
@@ -145,13 +146,10 @@ struct ContentView: View {
     }
     
     private func setPlayerVolume(to newValue: Double) {
-        print(newValue)
-        volumeState = newValue
         player.volume = Float(newValue)
     }
     
     private func playerPlay(station: String) {
-        print(station)
         let url = URL(string: station)
         let playerItem = AVPlayerItem(url: url!)
         player.replaceCurrentItem(with: playerItem)
