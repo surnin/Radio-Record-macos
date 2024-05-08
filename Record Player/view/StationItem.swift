@@ -21,7 +21,7 @@ struct StationItem: View {
     var body: some View {
         HStack {
             Text(title)
-            Image(systemName: starState.rawValue)
+            /*Image(systemName: starState.rawValue)
                 .onTapGesture {
                     onFav(self.id)
                     
@@ -33,7 +33,7 @@ struct StationItem: View {
                     }
                     
                     isFav.toggle()
-                }
+                }*/
         }.frame(
             minWidth: 0,
             maxWidth: .infinity,
