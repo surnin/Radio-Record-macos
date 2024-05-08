@@ -47,6 +47,16 @@ struct ContentView: View {
                 }
         }
         .onAppear { presenter.onAppear() }
+        .onChange(of: volumeState, perform: setPlayerVolume)
+        .onChange(of: shortcutState) { newValue in
+            print(newValue)
+            if (newValue == Shortcuts.up) {
+                setPlayerVolume(to: volumeState + 0.1)
+            }
+            if (newValue == Shortcuts.up) {
+                setPlayerVolume(to: volumeState - 0.1)
+            }
+        }
         .focusable()
         .focusEffectDisabled()
         .onKeyPress(keys: [.space]) { press in
@@ -78,16 +88,6 @@ struct ContentView: View {
                         Label("Play", systemImage: "play.fill")
                     }
                 Slider(value: $volumeState, in: 0...1)
-                    .onChange(of: volumeState, perform: setPlayerVolume)
-                    .onChange(of: shortcutState) { newValue in
-                        print(newValue)
-                        if (newValue == Shortcuts.up) {
-                            setPlayerVolume(to: volumeState + 0.1)
-                        }
-                        if (newValue == Shortcuts.up) {
-                            setPlayerVolume(to: volumeState - 0.1)
-                        }
-                    }
                     .frame(width: 100)
             }
         }
