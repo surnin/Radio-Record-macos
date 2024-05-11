@@ -21,14 +21,14 @@ struct Record_PlayerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(presenter: self.presenter)
+            MainView(presenter: self.presenter)
                 .onAppear() {
-                    hotkeyPlay.keyDownHandler = onPlay
-                    hotkeyStop.keyDownHandler = onPause
-                    hotkeyNext.keyDownHandler = onNext
-                    hotkeyPrevious.keyDownHandler = onPrevious
-                    hotkeyVolumeUp.keyDownHandler = onVolumeUp
-                    hotkeyVolumeDown.keyDownHandler = onVolumeDown
+                    hotkeyPlay.keyUpHandler = onPlay
+                    hotkeyStop.keyUpHandler = onPause
+                    hotkeyNext.keyUpHandler = onNext
+                    hotkeyPrevious.keyUpHandler = onPrevious
+                    hotkeyVolumeUp.keyUpHandler = onVolumeUp
+                    hotkeyVolumeDown.keyUpHandler = onVolumeDown
                 }
         }.commands {
             CommandMenu("Commands") {
@@ -54,10 +54,10 @@ struct Record_PlayerApp: App {
         }
     }
     
-    private func onPlay() { presenter.shortcutState = .play }
-    private func onPause() { presenter.shortcutState = .stop }
-    private func onNext() { presenter.shortcutState = .next }
-    private func onPrevious() { presenter.shortcutState = .previous }
-    private func onVolumeUp() { presenter.shortcutState = .up }
-    private func onVolumeDown() { presenter.shortcutState = .down }
+    private func onPlay() { presenter.onHotkeyPressed(shortcutState: .play) }
+    private func onPause() { presenter.onHotkeyPressed(shortcutState: .stop) }
+    private func onNext() { presenter.onHotkeyPressed(shortcutState: .next) }
+    private func onPrevious() { presenter.onHotkeyPressed(shortcutState: .previous) }
+    private func onVolumeUp() { presenter.onHotkeyPressed(shortcutState: .up) }
+    private func onVolumeDown() { presenter.onHotkeyPressed(shortcutState: .down) }
 }

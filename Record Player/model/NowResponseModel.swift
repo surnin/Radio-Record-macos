@@ -18,6 +18,6 @@ struct TrackModel: Codable {
     let id: Int
     let artist: String
     let song: String
-    let image600: String
+    let image200: String
     let shareUrl: String
 }

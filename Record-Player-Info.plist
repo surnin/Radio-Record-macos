@@ -1,2 +1,5 @@
-Read error: ssl=0xb4000072f5fce9c8: Failure in SSL library, usually a protocol error
-error:1000041b:SSL routines:OPENSSL_internal:TLSV1_ALERT_DECRYPT_ERROR (external/boringssl/src/ssl/tls_record.cc:592 0xb4000072f5f923c0:0x00000003)
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict/>
+</plist>

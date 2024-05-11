@@ -23,7 +23,7 @@ struct StationItem: View {
             /*SVGWebView(svg: svg)
                 .frame(width: 40, height: 40)*/
             Text(title)
-            Image(systemName: starState.rawValue)
+            /*Image(systemName: starState.rawValue)
                 .onTapGesture {
                     onFav(self.id)
                     
@@ -35,7 +35,7 @@ struct StationItem: View {
                     }
                     
                     isFav.toggle()
-                }
+                }*/
         }.frame(
             minWidth: 0,
             maxWidth: .infinity,

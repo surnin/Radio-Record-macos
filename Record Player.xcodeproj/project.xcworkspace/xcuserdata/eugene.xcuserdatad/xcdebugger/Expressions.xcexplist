@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MainPresenter.onHotkeyPressed(shortcutState:):MainPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stationState">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ContentView.fetchCurrent():ContentView.swift">
          <PersistentStrings>
             <PersistentString

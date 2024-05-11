@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		44004D342BD9256600D0447A /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44004D332BD9256600D0447A /* Shortcuts.swift */; };
-		4404FA012BE8105700766458 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 4404FA002BE8105700766458 /* HotKey */; };
 		4407FDDF2BD6C76F004D477C /* NowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4407FDDE2BD6C76F004D477C /* NowResponseModel.swift */; };
+		441050D52BEE16FD005F4D2F /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 441050D42BEE16FD005F4D2F /* HotKey */; };
 		44397A2E2BD6734B0056BE98 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397A2D2BD6734B0056BE98 /* Dimensions.swift */; };
 		443A9A3A2BD78BF800E4C479 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A9A392BD78BF800E4C479 /* Repository.swift */; };
 		443A9A3E2BD7904500E4C479 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A9A3D2BD7904500E4C479 /* MainPresenter.swift */; };
@@ -17,7 +17,7 @@
 		4450D0FA2BE9801C00C91D6E /* ObserveEquals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450D0F92BE9801C00C91D6E /* ObserveEquals.swift */; };
 		445444C62BD661EC00E7EA48 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 445444C52BD661EC00E7EA48 /* README.MD */; };
 		449A61D82BD59F1600EFC421 /* Record_PlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D72BD59F1600EFC421 /* Record_PlayerApp.swift */; };
-		449A61DA2BD59F1600EFC421 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D92BD59F1600EFC421 /* ContentView.swift */; };
+		449A61DA2BD59F1600EFC421 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D92BD59F1600EFC421 /* MainView.swift */; };
 		449A61DC2BD59F1700EFC421 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449A61DB2BD59F1700EFC421 /* Assets.xcassets */; };
 		449A61DF2BD59F1700EFC421 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449A61DE2BD59F1700EFC421 /* Preview Assets.xcassets */; };
 		44C4C8DE2BE4422900719007 /* SVGWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C4C8DD2BE4422900719007 /* SVGWebView.swift */; };
@@ -38,7 +38,7 @@
 		445444C52BD661EC00E7EA48 /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		449A61D42BD59F1600EFC421 /* Record Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Record Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		449A61D72BD59F1600EFC421 /* Record_PlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record_PlayerApp.swift; sourceTree = "<group>"; };
-		449A61D92BD59F1600EFC421 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		449A61D92BD59F1600EFC421 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		449A61DB2BD59F1700EFC421 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		449A61DE2BD59F1700EFC421 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		449A61E02BD59F1700EFC421 /* Record_Player.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Record_Player.entitlements; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4404FA012BE8105700766458 /* HotKey in Frameworks */,
+				441050D52BEE16FD005F4D2F /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +158,7 @@
 		44F62D032BD66E0300651C8D /* view */ = {
 			isa = PBXGroup;
 			children = (
-				449A61D92BD59F1600EFC421 /* ContentView.swift */,
+				449A61D92BD59F1600EFC421 /* MainView.swift */,
 				44F62D042BD66E1100651C8D /* StationItem.swift */,
 				44C4C8DD2BE4422900719007 /* SVGWebView.swift */,
 			);
@@ -182,7 +182,7 @@
 			);
 			name = "Record Player";
 			packageProductDependencies = (
-				4404FA002BE8105700766458 /* HotKey */,
+				441050D42BEE16FD005F4D2F /* HotKey */,
 			);
 			productName = "Record Player";
 			productReference = 449A61D42BD59F1600EFC421 /* Record Player.app */;
@@ -251,7 +251,7 @@
 				4442DB2F2BDC4F3A00C25DE1 /* StationData.swift in Sources */,
 				44F62D052BD66E1100651C8D /* StationItem.swift in Sources */,
 				4450D0FA2BE9801C00C91D6E /* ObserveEquals.swift in Sources */,
-				449A61DA2BD59F1600EFC421 /* ContentView.swift in Sources */,
+				449A61DA2BD59F1600EFC421 /* MainView.swift in Sources */,
 				449A61D82BD59F1600EFC421 /* Record_PlayerApp.swift in Sources */,
 				4407FDDF2BD6C76F004D477C /* NowResponseModel.swift in Sources */,
 				44004D342BD9256600D0447A /* Shortcuts.swift in Sources */,
@@ -405,7 +405,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.hornsandhoofs.Record-Player";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -437,7 +437,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.hornsandhoofs.Record-Player";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -480,7 +480,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4404FA002BE8105700766458 /* HotKey */ = {
+		441050D42BEE16FD005F4D2F /* HotKey */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4404F9FF2BE8105700766458 /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;
