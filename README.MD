@@ -11,4 +11,4 @@
 ~~Глобальные горячие клавиши~~\
 Избранное
 
-![](https://imgur.com/a/Q6poFAM)
+![Preview](https://imgur.com/a/Q6poFAM)
