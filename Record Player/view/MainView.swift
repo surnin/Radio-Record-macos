@@ -44,7 +44,7 @@ struct MainView: View {
             .navigationSplitViewColumnWidth(songPanelW)
             .frame(alignment: .top)
         } detail: {
-            List(presenter.filteredStations, id: \.id) { station in
+            List(presenter.filteredStations, id: \.self, selection: $presenter.stationState) { station in
                 StationItem(
                     id: station.id,
                     title: station.title,
@@ -55,9 +55,7 @@ struct MainView: View {
                     onFav: presenter.onSetFav
                 )
                 .contentShape(Rectangle())
-                .onTapGesture {
-                    presenter.onStationClick(station: station)
-                }
+                .onTapGesture { presenter.onStationClick(station: station) }
             }
             .onAppear { presenter.onAppear() }
             .focusable()

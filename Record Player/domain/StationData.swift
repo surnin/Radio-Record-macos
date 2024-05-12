@@ -5,7 +5,7 @@
 //  Created by Евгений K on 27.04.2024.
 //
 
-struct StationData: Equatable {
+struct StationData: Equatable, Hashable {
     let id: Int
     let title: String
     let prefix: String
