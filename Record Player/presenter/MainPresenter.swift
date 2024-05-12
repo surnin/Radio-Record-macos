@@ -20,13 +20,33 @@ public class MainPresenter: ObservableObject {
     
     @Published var data: [StationData] = []
     @Published var searchText: String = ""
-    @Published var stationState: StationData? = nil
+    @Published var stationState: StationData? = nil {
+        willSet(newValue){
+            if newValue != nil {
+                setNowPlayingMetadata(metadata: newValue!)
+            }
+        }
+    }
     @Published var windowTitleState: String = "Record"
     @Published var songPanelIsShowing = NavigationSplitViewVisibility.detailOnly
     @AppStorage("volume") var volumeState = 0.5
     
     init() {
         player = AVPlayer(playerItem: nil)
+        
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
+        
+        commandCenter.playCommand.addTarget { [self] (commandEvent) -> MPRemoteCommandHandlerStatus in
+            onSpacePressed()
+            return MPRemoteCommandHandlerStatus.success
+        }
+        
+        commandCenter.pauseCommand.addTarget { [self] (commandEvent) -> MPRemoteCommandHandlerStatus in
+            onSpacePressed()
+            return MPRemoteCommandHandlerStatus.success
+        }
     }
     
     var favouritesSet: Set<Int> {
@@ -45,6 +65,8 @@ public class MainPresenter: ObservableObject {
         }
     }
     
+    //MARK: Public functions
+    
     func onAppear() {
         guard let url = URL(string: stationsUrl) else { return }
         
@@ -62,91 +84,6 @@ public class MainPresenter: ObservableObject {
         }.resume()
     }
     
-    private func updateTracks() {
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { timer in self.onUpdateTracks() })
-    }
-    
-    private func updateCurrentTrack() {
-        data.forEach { item in
-            if item.id == stationState?.id {
-                stationState = item
-            }
-        }
-    }
-    
-    private func getStationUrl(station: StationData) -> String {
-        let prefix = if (station.prefix == "record") {
-            "record"
-        } else {
-            "record-\(station.prefix.replacingOccurrences(of: "-", with: ""))"
-        }
-        return "https://hls-01-radiorecord.hostingradio.ru/\(prefix)/playlist.m3u8"
-    }
-    
-    func onStationClick(station: StationData) {
-        stationState = station
-        windowTitleState = "Record - \(station.title)"
-        setNowPlayingMetadata(metadata: station)
-        play(station: station)
-        onUpdateTracks()
-        songPanelIsShowing = .automatic
-    }
-    
-    private func onUpdateTracks() {
-        guard let url = URL(string: currentUrl) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
-            do {
-                let posts = try JSONDecoder().decode(NowModel.self, from: data)
-                DispatchQueue.main.async {
-                    let now = posts.result
-                    
-                    self.data = self.data.map { item in
-                        let newItem = now.first(where: { $0.id == item.id})?.track
-                        
-                        return StationData(
-                            id: item.id,
-                            title: item.title,
-                            prefix: item.prefix,
-                            svg: item.svg,
-                            artist: newItem?.artist ?? String(),
-                            song: newItem?.song ?? String(),
-                            isFav: false,
-                            image: newItem?.image200 ?? String(),
-                            shareUrl: newItem?.shareUrl ?? String()
-                        )
-                    }
-                    
-                    self.updateCurrentTrack()
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }.resume()
-    }
-    
-    func onSetFav(to id: Int) {
-        print(id)
-    }
-    
-    private func setNowPlayingMetadata(metadata: StationData) {
-        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-        var nowPlayingInfo = [String: Any]()
-        
-        //        nowPlayingInfo[MPNowPlayingInfoPropertyAssetURL] = URL(string: metadata.image)
-        nowPlayingInfo[MPNowPlayingInfoPropertyMediaType] = MPNowPlayingInfoMediaType.audio.rawValue
-        nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
-        nowPlayingInfo[MPMediaItemPropertyTitle] = metadata.artist
-        nowPlayingInfo[MPMediaItemPropertyArtist] = metadata.song
-        //        nowPlayingInfo[MPMediaItemPropertyArtwork] = metadata.image
-        
-        print(nowPlayingInfo)
-        
-        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-        MPNowPlayingInfoCenter.default().playbackState = .playing
-    }
-    
     func onVolumeChange(volume: Double) {
         player.volume = Float(volume)
     }
@@ -161,23 +98,16 @@ public class MainPresenter: ObservableObject {
         play(station: station)
     }
     
-    private func play(station: StationData?) {
-        guard let station = station else { return }
-        isPlaying = true
-        playerPlay(station: getStationUrl(station: station))
+    func onStationClick(station: StationData) {
+        stationState = station
+        windowTitleState = "Record - \(station.title)"
+        onUpdateTracks()
+        play(station: station)
+        songPanelIsShowing = .automatic
     }
     
-    private func stop() {
-        isPlaying = false
-        player.pause()
-    }
-    
-    private func playerPlay(station: String) {
-        let url = URL(string: station)
-        let playerItem = AVPlayerItem(url: url!)
-        player.replaceCurrentItem(with: playerItem)
-        player.play()
-        player.volume = Float(volumeState)
+    func onSetFav(to id: Int) {
+        print(id)
     }
     
     func onHotkeyPressed(shortcutState: Shortcuts) {
@@ -236,14 +166,141 @@ public class MainPresenter: ObservableObject {
         copyToClipboard(string: "\(station.artist) - \(station.song)")
     }
     
+    func onSpacePressed() {
+        guard let station = stationState else { return }
+        isPlaying ? stop() : onStationClick(station: station)
+    }
+    
+    //MARK: Private functions
+    
+    private func updateTracks() {
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { timer in self.onUpdateTracks() })
+    }
+    
+    private func updateCurrentTrack() {
+        data.forEach { item in
+            if item.id == stationState?.id {
+                stationState = item
+            }
+        }
+    }
+    
+    private func getStationUrl(station: StationData) -> String {
+        let prefix = if (station.prefix == "record") {
+            "record"
+        } else {
+            "record-\(station.prefix.replacingOccurrences(of: "-", with: ""))"
+        }
+        return "https://hls-01-radiorecord.hostingradio.ru/\(prefix)/playlist.m3u8"
+    }
+    
+    private func onUpdateTracks() {
+        guard let url = URL(string: currentUrl) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let posts = try JSONDecoder().decode(NowModel.self, from: data)
+                DispatchQueue.main.async {
+                    let now = posts.result
+                    
+                    self.data = self.data.map { item in
+                        let newItem = now.first(where: { $0.id == item.id})?.track
+                        
+                        return StationData(
+                            id: item.id,
+                            title: item.title,
+                            prefix: item.prefix,
+                            svg: item.svg,
+                            artist: newItem?.artist ?? String(),
+                            song: newItem?.song ?? String(),
+                            isFav: false,
+                            image: newItem?.image200 ?? String(),
+                            shareUrl: newItem?.shareUrl ?? String()
+                        )
+                    }
+                    
+                    self.updateCurrentTrack()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    private func setNowPlayingMetadata(metadata: StationData) {
+        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+        var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
+        
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = Float(player.currentItem?.duration.seconds ?? 0)
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Float(player.currentItem?.currentTime().seconds ?? 0)
+        nowPlayingInfo[MPNowPlayingInfoPropertyMediaType] = MPNowPlayingInfoMediaType.audio.rawValue
+        nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
+        nowPlayingInfo[MPMediaItemPropertyTitle] = metadata.artist
+        nowPlayingInfo[MPMediaItemPropertyArtist] = metadata.song
+        let image = NSImage(named: "DefaultTrack_600")!
+        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+    }
+    
+    private func play(station: StationData?) {
+        guard let station = station else { return }
+        isPlaying = true
+        playerPlay(station: getStationUrl(station: station))
+        MPNowPlayingInfoCenter.default().playbackState = .playing
+    }
+    
+    private func stop() {
+        isPlaying = false
+        player.pause()
+        MPNowPlayingInfoCenter.default().playbackState = .stopped
+    }
+    
+    private func playerPlay(station: String) {
+        let url = URL(string: station)
+        let playerItem = AVPlayerItem(url: url!)
+        player.replaceCurrentItem(with: playerItem)
+        player.play()
+        player.volume = Float(volumeState)
+    }
+    
     private func copyToClipboard(string: String) {
         let pasteBoard = NSPasteboard.general
         pasteBoard.clearContents()
         pasteBoard.setString(string, forType: .string)
     }
+}
+
+extension View {
     
-    func onSpacePressed() {
-        guard let station = stationState else { return }
-        isPlaying ? stop() : onStationClick(station: station)
+    func renderAsImage() -> NSImage? {
+        let view = NoInsetHostingView(rootView: self)
+        view.setFrameSize(view.fittingSize)
+        return view.bitmapImage()
     }
+
+}
+
+class NoInsetHostingView<V>: NSHostingView<V> where V: View {
+    
+    override var safeAreaInsets: NSEdgeInsets {
+        return .init()
+    }
+    
+}
+
+public extension NSView {
+    
+    func bitmapImage() -> NSImage? {
+        guard let rep = bitmapImageRepForCachingDisplay(in: bounds) else {
+            return nil
+        }
+        cacheDisplay(in: bounds, to: rep)
+        guard let cgImage = rep.cgImage else {
+            return nil
+        }
+        return NSImage(cgImage: cgImage, size: bounds.size)
+    }
+    
 }

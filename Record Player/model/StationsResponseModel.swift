@@ -25,7 +25,7 @@ extension StationModel {
         return StationData(id: id,
                            title: self.title,
                            prefix: self.prefix,
-                           svg: self.svg_outline,
+                           svg: "",//self.svg_outline,
                            artist: String(),
                            song: String(),
                            isFav: false,
