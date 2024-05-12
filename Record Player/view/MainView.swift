@@ -29,15 +29,13 @@ struct MainView: View {
                     AsyncImage(url: URL(string: presenter.stationState?.image ?? "")) { image in
                         if let image = image.image {
                             image.resizable()
-                                .scaledToFit()
-                                .frame(width: songCoverWH, height: songCoverWH)
                         } else if image.error != nil {
                             Image("DefaultTrack_600")
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: songCoverWH, height: songCoverWH)
                         }
                     }
+                    .frame(width: songCoverWH, height: songCoverWH)
+                    .scaledToFit()
                     .animation(Animation.default.speed(1))
                     Text(presenter.stationState?.artist ?? "").padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                     Text(presenter.stationState?.song ?? "").padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
