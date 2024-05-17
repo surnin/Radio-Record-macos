@@ -189,8 +189,9 @@ public class MainPresenter: ObservableObject {
         let prefix = if (station.prefix == "record") {
             "record"
         } else {
-            "record-\(station.prefix.replacingOccurrences(of: "-", with: ""))"
+            "record-\(stationsMap[station.prefix] ?? "")"
         }
+        print(prefix)
         return "https://hls-01-radiorecord.hostingradio.ru/\(prefix)/playlist.m3u8"
     }
     
