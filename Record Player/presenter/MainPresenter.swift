@@ -20,6 +20,7 @@ public class MainPresenter: ObservableObject {
     
     @Published var data: [StationData] = []
     @Published var searchText: String = ""
+    @Published var favouriteSelection: FavouritesType = .all
     @Published var stationState: StationData? = nil {
         willSet(newValue){
             if newValue != nil {
@@ -49,9 +50,9 @@ public class MainPresenter: ObservableObject {
         }
     }
     
-    var favouritesSet: Set<Int> {
+    var favouritesArray: [Int] {
         get {
-            return UserDefaults.standard.object(forKey: favouritesKey) as? Set<Int> ?? Set<Int>()
+            return UserDefaults.standard.object(forKey: favouritesKey) as? [Int] ?? [Int]()
         }
         set {
             UserDefaults.standard.set(newValue, forKey: favouritesKey)
@@ -59,9 +60,12 @@ public class MainPresenter: ObservableObject {
     }
     
     var filteredStations: [StationData] {
-        guard !searchText.isEmpty else { return data }
+        guard !searchText.isEmpty || favouriteSelection == .favourites else { return data }
+        
         return data.filter { station in
-            station.title.lowercased().contains(searchText.lowercased())
+            (favouriteSelection == .favourites) ? favouritesArray.contains(station.id) : true
+        }.filter { station in
+            (!searchText.isEmpty) ? station.title.lowercased().contains(searchText.lowercased()) : true
         }
     }
     
@@ -75,7 +79,8 @@ public class MainPresenter: ObservableObject {
             do {
                 let posts = try JSONDecoder().decode(StationResultModel.self, from: data)
                 DispatchQueue.main.async {
-                    self.data = posts.result.stations.map { $0.map() }
+                    let favourites = self.favouritesArray
+                    self.data = posts.result.stations.map { $0.map(favourites) }
                     self.updateTracks()
                 }
             } catch {
@@ -107,7 +112,13 @@ public class MainPresenter: ObservableObject {
     }
     
     func onSetFav(to id: Int) {
-        print(id)
+        var array = favouritesArray
+        if array.contains(id) {
+            array.remove(at: array.firstIndex(of: id)!)
+        } else {
+            array.append(id)
+        }
+        favouritesArray = array
     }
     
     func onHotkeyPressed(shortcutState: Shortcuts) {
@@ -191,7 +202,6 @@ public class MainPresenter: ObservableObject {
         } else {
             "record-\(stationsMap[station.prefix] ?? "")"
         }
-        print(prefix)
         return "https://hls-01-radiorecord.hostingradio.ru/\(prefix)/playlist.m3u8"
     }
     
@@ -205,20 +215,13 @@ public class MainPresenter: ObservableObject {
                 DispatchQueue.main.async {
                     let now = posts.result
                     
-                    self.data = self.data.map { item in
-                        let newItem = now.first(where: { $0.id == item.id})?.track
+                    for index in 0..<self.data.count {
+                        let newItem = now.first(where: { $0.id == self.data[index].id})?.track
                         
-                        return StationData(
-                            id: item.id,
-                            title: item.title,
-                            prefix: item.prefix,
-                            svg: item.svg,
-                            artist: newItem?.artist ?? String(),
-                            song: newItem?.song ?? String(),
-                            isFav: false,
-                            image: newItem?.image200 ?? String(),
-                            shareUrl: newItem?.shareUrl ?? String()
-                        )
+                        self.data[index].artist = newItem?.artist ?? String()
+                        self.data[index].song = newItem?.song ?? String()
+                        self.data[index].image = newItem?.image200 ?? String()
+                        self.data[index].shareUrl = newItem?.shareUrl ?? String()
                     }
                     
                     self.updateCurrentTrack()
