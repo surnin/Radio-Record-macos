@@ -4,5 +4,5 @@
 
 Поддержать развитие проекта можно [тут](https://pay.cloudtips.ru/p/3bd816e2)
 
-
+![screenshot](https://imgur.com/a/1qpjIsL)
 
