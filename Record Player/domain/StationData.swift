@@ -5,14 +5,13 @@
 //  Created by Евгений K on 27.04.2024.
 //
 
-struct StationData: Equatable, Hashable {
-    var id: Int
-    var title: String
-    var prefix: String
-    var svg: String
-    var artist: String
-    var song: String
+struct StationData {
+    let id: Int
+    let title: String
+    let prefix: String
+    let tooltip: String
+    let svg: String
+    let artist: String
+    let song: String
     var isFav: Bool
-    var image: String
-    var shareUrl: String
 }

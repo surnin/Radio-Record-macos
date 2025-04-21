@@ -9,20 +9,15 @@
 /* Begin PBXBuildFile section */
 		44004D342BD9256600D0447A /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44004D332BD9256600D0447A /* Shortcuts.swift */; };
 		4407FDDF2BD6C76F004D477C /* NowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4407FDDE2BD6C76F004D477C /* NowResponseModel.swift */; };
-		441050D52BEE16FD005F4D2F /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 441050D42BEE16FD005F4D2F /* HotKey */; };
 		44397A2E2BD6734B0056BE98 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397A2D2BD6734B0056BE98 /* Dimensions.swift */; };
 		443A9A3A2BD78BF800E4C479 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A9A392BD78BF800E4C479 /* Repository.swift */; };
 		443A9A3E2BD7904500E4C479 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A9A3D2BD7904500E4C479 /* MainPresenter.swift */; };
 		4442DB2F2BDC4F3A00C25DE1 /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442DB2E2BDC4F3A00C25DE1 /* StationData.swift */; };
-		4450D0FA2BE9801C00C91D6E /* ObserveEquals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450D0F92BE9801C00C91D6E /* ObserveEquals.swift */; };
 		445444C62BD661EC00E7EA48 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 445444C52BD661EC00E7EA48 /* README.MD */; };
-		449821F42BEC16E10095E6B9 /* StationsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449821F32BEC16E10095E6B9 /* StationsMap.swift */; };
 		449A61D82BD59F1600EFC421 /* Record_PlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D72BD59F1600EFC421 /* Record_PlayerApp.swift */; };
-		449A61DA2BD59F1600EFC421 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D92BD59F1600EFC421 /* MainView.swift */; };
+		449A61DA2BD59F1600EFC421 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A61D92BD59F1600EFC421 /* ContentView.swift */; };
 		449A61DC2BD59F1700EFC421 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449A61DB2BD59F1700EFC421 /* Assets.xcassets */; };
 		449A61DF2BD59F1700EFC421 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449A61DE2BD59F1700EFC421 /* Preview Assets.xcassets */; };
-		44C4C8DE2BE4422900719007 /* SVGWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C4C8DD2BE4422900719007 /* SVGWebView.swift */; };
-		44D7BA2A2BEFAE4A0054126A /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D7BA292BEFAE4A0054126A /* MainState.swift */; };
 		44F62D022BD66DDE00651C8D /* StationsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62D012BD66DDE00651C8D /* StationsResponseModel.swift */; };
 		44F62D052BD66E1100651C8D /* StationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62D042BD66E1100651C8D /* StationItem.swift */; };
 		44F62D0A2BD66F0900651C8D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 44F62D092BD66F0900651C8D /* LICENSE */; };
@@ -36,17 +31,13 @@
 		443A9A392BD78BF800E4C479 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		443A9A3D2BD7904500E4C479 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		4442DB2E2BDC4F3A00C25DE1 /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
-		4450D0F92BE9801C00C91D6E /* ObserveEquals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveEquals.swift; sourceTree = "<group>"; };
 		445444C52BD661EC00E7EA48 /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
-		449821F32BEC16E10095E6B9 /* StationsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsMap.swift; sourceTree = "<group>"; };
 		449A61D42BD59F1600EFC421 /* Record Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Record Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		449A61D72BD59F1600EFC421 /* Record_PlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record_PlayerApp.swift; sourceTree = "<group>"; };
-		449A61D92BD59F1600EFC421 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		449A61D92BD59F1600EFC421 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		449A61DB2BD59F1700EFC421 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		449A61DE2BD59F1700EFC421 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		449A61E02BD59F1700EFC421 /* Record_Player.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Record_Player.entitlements; sourceTree = "<group>"; };
-		44C4C8DD2BE4422900719007 /* SVGWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGWebView.swift; sourceTree = "<group>"; };
-		44D7BA292BEFAE4A0054126A /* MainState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainState.swift; sourceTree = "<group>"; };
 		44F62D012BD66DDE00651C8D /* StationsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsResponseModel.swift; sourceTree = "<group>"; };
 		44F62D042BD66E1100651C8D /* StationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationItem.swift; sourceTree = "<group>"; };
 		44F62D092BD66F0900651C8D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -57,7 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				441050D52BEE16FD005F4D2F /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				44397A2D2BD6734B0056BE98 /* Dimensions.swift */,
-				449821F32BEC16E10095E6B9 /* StationsMap.swift */,
-				4450D0F92BE9801C00C91D6E /* ObserveEquals.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -94,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				443A9A3D2BD7904500E4C479 /* MainPresenter.swift */,
-				44D7BA292BEFAE4A0054126A /* MainState.swift */,
 			);
 			path = presenter;
 			sourceTree = "<group>";
@@ -164,9 +151,8 @@
 		44F62D032BD66E0300651C8D /* view */ = {
 			isa = PBXGroup;
 			children = (
-				449A61D92BD59F1600EFC421 /* MainView.swift */,
+				449A61D92BD59F1600EFC421 /* ContentView.swift */,
 				44F62D042BD66E1100651C8D /* StationItem.swift */,
-				44C4C8DD2BE4422900719007 /* SVGWebView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -188,7 +174,6 @@
 			);
 			name = "Record Player";
 			packageProductDependencies = (
-				441050D42BEE16FD005F4D2F /* HotKey */,
 			);
 			productName = "Record Player";
 			productReference = 449A61D42BD59F1600EFC421 /* Record Player.app */;
@@ -219,7 +204,6 @@
 			);
 			mainGroup = 449A61CB2BD59F1600EFC421;
 			packageReferences = (
-				4404F9FF2BE8105700766458 /* XCRemoteSwiftPackageReference "HotKey" */,
 			);
 			productRefGroup = 449A61D52BD59F1600EFC421 /* Products */;
 			projectDirPath = "";
@@ -253,13 +237,9 @@
 				44F62D022BD66DDE00651C8D /* StationsResponseModel.swift in Sources */,
 				44397A2E2BD6734B0056BE98 /* Dimensions.swift in Sources */,
 				443A9A3E2BD7904500E4C479 /* MainPresenter.swift in Sources */,
-				44C4C8DE2BE4422900719007 /* SVGWebView.swift in Sources */,
 				4442DB2F2BDC4F3A00C25DE1 /* StationData.swift in Sources */,
 				44F62D052BD66E1100651C8D /* StationItem.swift in Sources */,
-				449821F42BEC16E10095E6B9 /* StationsMap.swift in Sources */,
-				4450D0FA2BE9801C00C91D6E /* ObserveEquals.swift in Sources */,
-				44D7BA2A2BEFAE4A0054126A /* MainState.swift in Sources */,
-				449A61DA2BD59F1600EFC421 /* MainView.swift in Sources */,
+				449A61DA2BD59F1600EFC421 /* ContentView.swift in Sources */,
 				449A61D82BD59F1600EFC421 /* Record_PlayerApp.swift in Sources */,
 				4407FDDF2BD6C76F004D477C /* NowResponseModel.swift in Sources */,
 				44004D342BD9256600D0447A /* Shortcuts.swift in Sources */,
@@ -396,12 +376,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Record Player/Record_Player.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Record Player/Preview Content\"";
-				DEVELOPMENT_TEAM = D6KDXUB3RY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -413,7 +393,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.hornsandhoofs.Record-Player";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -428,12 +409,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Record Player/Record_Player.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Record Player/Preview Content\"";
-				DEVELOPMENT_TEAM = D6KDXUB3RY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -445,7 +426,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.hornsandhoofs.Record-Player";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -475,25 +457,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4404F9FF2BE8105700766458 /* XCRemoteSwiftPackageReference "HotKey" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/soffes/HotKey";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		441050D42BEE16FD005F4D2F /* HotKey */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4404F9FF2BE8105700766458 /* XCRemoteSwiftPackageReference "HotKey" */;
-			productName = HotKey;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 449A61CC2BD59F1600EFC421 /* Project object */;
 }

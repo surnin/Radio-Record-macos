@@ -8,7 +8,6 @@
 import SwiftUI
 import AVKit
 
-
 struct ContentView: View {
     
     @StateObject private var presenter = MainPresenter()
@@ -39,33 +38,19 @@ struct ContentView: View {
                 svg: station.svg,
                 isFav: false,
                 onFav: presenter.onSetFav
-            ).contentShape(Rectangle())
-                .onTapGesture {
-                    isPlaying = true
-                    windowTitleState = "Record - \(station.title)"
-                    playerPlay(station: presenter.onStationClick(station: station))
-                }
+            )
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isPlaying = true
+                windowTitleState = "Record - \(station.title)"
+                playerPlay(station: presenter.onStationClick(station: station))
+            }
         }
         .onAppear { presenter.onAppear() }
-        .onChange(of: volumeState, perform: setPlayerVolume)
-        .onChange(of: shortcutState) { newValue in
-            print(newValue)
-            if (newValue == Shortcuts.up) {
-                setPlayerVolume(to: volumeState + 0.1)
-            }
-            if (newValue == Shortcuts.up) {
-                setPlayerVolume(to: volumeState - 0.1)
-            }
-        }
         .focusable()
-        .focusEffectDisabled()
-        .onKeyPress(keys: [.space]) { press in
-            isPlaying ? player.pause() : player.play()
-            isPlaying = !isPlaying
-            return .handled
-        }
+        .modifier(MacOS14Modifier(isPlaying: $isPlaying, player: player))
         .navigationTitle(windowTitleState)
-        .toolbar{
+        .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Picker("Select categorie", selection: $selection) {
                     ForEach(categories, id: \.self) {
@@ -74,20 +59,36 @@ struct ContentView: View {
                 }
                 .disabled(true)
                 .pickerStyle(.menu)
+                
                 TextField("Filter", text: $presenter.searchText)
                     .frame(width: 100)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(action: { 
+                
+                Button(action: {
                     player.pause()
-                    isPlaying = !isPlaying}) {
-                        Label("Stop", systemImage: "stop.fill")
-                    }
-                Button(action: { 
+                    isPlaying = !isPlaying
+                }) {
+                    Label("Stop", systemImage: "stop.fill")
+                }
+                
+                Button(action: {
                     player.play()
-                    isPlaying = !isPlaying}) {
-                        Label("Play", systemImage: "play.fill")
-                    }
+                    isPlaying = !isPlaying
+                }) {
+                    Label("Play", systemImage: "play.fill")
+                }
+                
                 Slider(value: $volumeState, in: 0...1)
+                    .onChange(of: volumeState, perform: setPlayerVolume)
+                    .onChange(of: shortcutState) { newValue in
+                        print(newValue)
+                        if newValue == .up {
+                            setPlayerVolume(to: volumeState + 0.1)
+                        }
+                        if newValue == .down {
+                            setPlayerVolume(to: volumeState - 0.1)
+                        }
+                    }
                     .frame(width: 100)
             }
         }
@@ -99,10 +100,30 @@ struct ContentView: View {
     }
     
     private func playerPlay(station: String) {
-        let url = URL(string: station)
-        let playerItem = AVPlayerItem(url: url!)
+        guard let url = URL(string: station) else { return }
+        let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
         player.play()
+    }
+}
+
+@available(macOS 13.0, *)
+struct MacOS14Modifier: ViewModifier {
+    @Binding var isPlaying: Bool
+    var player: AVPlayer
+    
+    func body(content: Content) -> some View {
+        if #available(macOS 14.0, *) {
+            content
+                .focusEffectDisabled()
+                .onKeyPress(keys: [.space]) { _ in
+                    isPlaying ? player.pause() : player.play()
+                    isPlaying.toggle()
+                    return .handled
+                }
+        } else {
+            content
+        }
     }
 }
 
